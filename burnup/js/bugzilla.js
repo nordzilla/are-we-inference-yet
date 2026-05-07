@@ -98,7 +98,20 @@
         }, {});
     }
 
+    function materializeDate(date) {
+        if (!date) {
+            return null;
+        }
+
+        const materializedDate = new Date(date);
+        return Number.isNaN(materializedDate.getTime()) ? null : materializedDate;
+    }
+
     function materializeBug(bug) {
+        const resolutionTime = bug.is_open
+            ? null
+            : materializeDate(bug.cf_last_resolved || bug.last_change_time);
+
         return {
             /*
             assignedTo: materializePerson(bug.assigned_to_detail),
@@ -114,8 +127,8 @@
             open: bug.is_open,
             //os: bug.op_sys,
             //product: bug.product,
-            creationTime: new Date(bug.creation_time),
-            resolutionTime: new Date(bug.cf_last_resolved),
+            creationTime: materializeDate(bug.creation_time),
+            resolutionTime,
             /*
             points: Number.parseInt(bug.cf_fx_points) || null,
             reporter: materializePerson(bug.creator_detail),
@@ -135,7 +148,7 @@
 
         // Must use exclude_fields because we can't include_fields all cf_status_* or cf_tracking_* flags by name.
         //url.push("&exclude_fields=alias,cc,cf_crash_signature,cf_qa_whiteboard,cf_user_story,classification,flags,groups,is_cc_accessible,is_confirmed,is_creator_accessible,platform,priority,qa_contact,see_also,severity,target_milestone,url,version");
-        url.push("&include_fields=id,summary,is_open,creation_time,cf_last_resolved");
+        url.push("&include_fields=id,summary,is_open,creation_time,cf_last_resolved,last_change_time");
 
         // Restrict search to BMO's non-Graveyard products.
         url.push("&classification=Client%20Software&classification=Developer%20Infrastructure&classification=Components&classification=Server%20Software&classification=Other");

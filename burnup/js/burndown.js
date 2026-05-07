@@ -17,16 +17,11 @@
     const FIREFOX_DARK_BLUE_GREY2 = "#6A7B86";
 
     const MS_PER_DAY = 24*60*60*1000;
-    const MS_PER_WEEK = 7*MS_PER_DAY;
-    const MS_PER_MONTH = 4*MS_PER_WEEK;
 
     const DEBUG = true;
     function debug(...args) { DEBUG && console.debug(...args); }
 
     function days(d) { return d * MS_PER_DAY; }
-    function weeks(w) { return days(7 * w); }
-    function months(m) { return weeks(4 * m); }
-
     const queryString = window.CHART_QUERY_STRING || getQueryString();
     const searchParams = parseQueryString(queryString);
     const chartStartDate = getChartStartDate();
@@ -58,10 +53,9 @@
     }
 
     function getChartStartDate() {
-      const CHART_START_PERIOD = months(4);
       return (searchParams && searchParams.since) ||
              window.CHART_START_DATE ||
-             yyyy_mm_dd(new Date(Date.now() - CHART_START_PERIOD));
+             null;
     }
 
     function getElementValue(id) {
@@ -234,8 +228,12 @@
             let bugListURL = `https://bugzilla.mozilla.org/buglist.cgi?bug_id=`;
 
             for (let bug of bugs) {
+                if (!bug.creationTime) {
+                    continue;
+                }
+
                 let openDate = yyyy_mm_dd(bug.creationTime);
-                if (openDate < chartStartDate) {
+                if (chartStartDate && openDate < chartStartDate) {
                     openDate = chartStartDate;
                 }
                 openedBugOn(openDate);
@@ -246,9 +244,9 @@
                     bugRow.appendChild(createLink(`bug ${bug.id} - ${bug.summary}`, bugURL));
                     bugList.appendChild(bugRow);
                     bugListURL += `${bug.id},`;
-                } else {
+                } else if (bug.resolutionTime) {
                     let closedDate = yyyy_mm_dd(bug.resolutionTime);
-                    if (closedDate < chartStartDate) {
+                    if (chartStartDate && closedDate < chartStartDate) {
                         closedDate = chartStartDate;
                     }
                     closedBugOn(closedDate);
