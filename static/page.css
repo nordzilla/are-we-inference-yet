@@ -40,6 +40,16 @@ html.embed a:visited {
   text-decoration: underline;
 }
 
+.project-status {
+  width: 1200px;
+  margin: 0 auto 35px;
+  text-align: center;
+}
+
+.project-error {
+  color: var(--red-70);
+}
+
 #footer {
   display: flex;
   flex-direction: row;
