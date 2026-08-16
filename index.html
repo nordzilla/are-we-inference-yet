@@ -1,242 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Are We Translations Yet?</title>
-    <link href='static/page.css' rel='stylesheet' type='text/css'>
-    <script src='static/areweyet/chart.js'></script>
+  <meta charset="utf-8">
+  <title>Are We Inference Yet?</title>
+  <link href="static/page.css" rel="stylesheet" type="text/css">
+  <script src="static/page.js" defer></script>
 </head>
 <body>
-  <h1 id="are-we-translations-yet"><a class="section-anchor" href="#are-we-translations-yet"><b>Are We Translations Yet?</b></a></h1>
+  <h1 id="are-we-inference-yet"><a class="section-anchor" href="#are-we-inference-yet"><b>Are We Inference Yet?</b></a></h1>
 
   <div class="milestones">
     <div class="desc-box-outer">
       <div class="desc-box">
-        <h2>Translations (All Platforms)</h2>
-        <p>
-          This chart tracks the overall translations work in the Firefox Translations component for all platforms.
-        </p>
-        <p>
-          All bugs in the Firefox and Fenix Translations components are shown in this chart.
-          The milestones are broken out below.
-        </p>
+        <h2><a href="frontend/index.html">Machine Learning: Frontend</a></h2>
+        <p>This chart tracks all bugs in the <strong>Core :: Machine Learning: Frontend</strong> component.</p>
       </div>
     </div>
-
     <div style="width: 70%" class="iframe-container">
-      <div>
-          <iframe src="./burnup/index.html?product=Firefox&product=Fenix&component=Translations"></iframe>
-      </div>
-    </div>
-  </div>
-
-  <h1 id="translations-platforms"><a class="section-anchor" href="#translations-platforms"><b>Translations Platforms</b></a></h1>
-
-  <div class="milestones">
-    <div class="desc-box-outer">
-      <div class="desc-box">
-        <h2>Translations (Desktop)</h2>
-        <p>
-          This chart tracks the overall translations work in the Firefox Translations component for Desktop.
-        </p>
-        <p>
-          All bugs in the Firefox Translations component are shown in this chart.
-          The milestones are broken out below.
-        </p>
-      </div>
-    </div>
-
-    <div style="width: 70%" class="iframe-container">
-      <div>
-          <iframe src="./burnup/index.html?product=Firefox&component=Translations"></iframe>
-      </div>
+      <div><iframe src="burnup/index.html?product=Core&amp;component=Machine%20Learning%3A%20Frontend" title="Core Machine Learning: Frontend bug chart"></iframe></div>
     </div>
   </div>
 
   <div class="milestones">
     <div class="desc-box-outer">
       <div class="desc-box">
-        <h2>Translations (Android)</h2>
-        <p>
-          This chart tracks the overall translations work in the Firefox Translations component for Android.
-        </p>
-        <p>
-          All bugs in the Fenix Translations component are shown in this chart.
-          The milestones are broken out below.
-        </p>
+        <h2><a href="general/index.html">Machine Learning: General</a></h2>
+        <p>This chart tracks all bugs in the <strong>Core :: Machine Learning: General</strong> component.</p>
       </div>
     </div>
-
     <div style="width: 70%" class="iframe-container">
-      <div>
-          <iframe src="./burnup/index.html?product=Fenix&component=Translations"></iframe>
-      </div>
-    </div>
-  </div>
-
-  <!--
-  <h1 id="ongoing-translations-projects"><a class="section-anchor" href="#ongoing-translations-projects"><b>Ongoing Translations Projects</b></a></h1>
-
-  <div class="milestones">
-    <div class="desc-box-outer">
-      <div class="desc-box">
-        <h2>Project Title</h2>
-        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=BUG_ID">Bug BUG_ID</a>
-        <p>
-          This chart tracks the meta bug for this ongoing translations project.
-        </p>
-      </div>
-    </div>
-
-    <div style="width: 70%" class="iframe-container">
-      <div>
-          <iframe src="./burnup/index.html?blocks=BUG_ID&priority=P1&priority=P2&priority=P3"></iframe>
-      </div>
-    </div>
-  </div>
-  -->
-
-  <h1 id="completed-translations-projects"><a class="section-anchor" href="#completed-translations-projects"><b>Completed Translations Projects</b></a></h1>
-
-  <div class="milestones">
-    <div class="desc-box-outer">
-      <div class="desc-box">
-        <h2>Ship about:translations Page With QuickAction</h2>
-        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=2004463">Bug 2004463</a>
-        <p>
-          This chart tracks the meta bug for shipping the about:translations page with a URL-bar QuickAction as an entry point.
-        </p>
-      </div>
-    </div>
-
-    <div style="width: 70%" class="iframe-container">
-      <div>
-          <iframe src="./burnup/index.html?completed=true&blocks=2004463&priority=P1&priority=P2&priority=P3"></iframe>
-      </div>
+      <div><iframe src="burnup/index.html?product=Core&amp;component=Machine%20Learning%3A%20General" title="Core Machine Learning: General bug chart"></iframe></div>
     </div>
   </div>
 
   <div class="milestones">
     <div class="desc-box-outer">
       <div class="desc-box">
-        <h2>Support CJK Translations</h2>
-        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1904415">Bug 1904415</a>
-        <p>
-          This chart tracks the meta bug for supporting CJK Translations in Firefox.
-        </p>
+        <h2><a href="models/index.html">Machine Learning: Models</a></h2>
+        <p>This chart tracks all bugs in the <strong>Core :: Machine Learning: Models</strong> component.</p>
       </div>
     </div>
-
     <div style="width: 70%" class="iframe-container">
-      <div>
-          <iframe src="./burnup/index.html?completed=true&blocks=1904415&priority=P1&priority=P2"></iframe>
-      </div>
+      <div><iframe src="burnup/index.html?product=Core&amp;component=Machine%20Learning%3A%20Models" title="Core Machine Learning: Models bug chart"></iframe></div>
     </div>
   </div>
 
   <div class="milestones">
     <div class="desc-box-outer">
       <div class="desc-box">
-        <h2>Select Translations MVP</h2>
-        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1855907">Bug 1855907</a>
-        <p>
-          This chart tracks the MVP for Firefox Select Translations on Firefox Desktop.
-        </p>
+        <h2><a href="on-device/index.html">Machine Learning: On Device</a></h2>
+        <p>This chart tracks all bugs in the <strong>Core :: Machine Learning: On Device</strong> component.</p>
       </div>
     </div>
-
     <div style="width: 70%" class="iframe-container">
-      <div>
-          <iframe src="./burnup/index.html?completed=true&blocks=1855907&priority=P1&priority=P2&priority=P3"></iframe>
-      </div>
+      <div><iframe src="burnup/index.html?product=Core&amp;component=Machine%20Learning%3A%20On%20Device" title="Core Machine Learning: On Device bug chart"></iframe></div>
     </div>
   </div>
 
   <div class="milestones">
     <div class="desc-box-outer">
       <div class="desc-box">
-        <h2>Android Translations MVP</h2>
-        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1844512">Bug 1844512</a>
-        <p>
-          This chart tracks the MVP for Full-Page Translations on Firefox for Android.
-        </p>
+        <h2><a href="server/index.html">Machine Learning: Server</a></h2>
+        <p>This chart tracks all bugs in the <strong>Core :: Machine Learning: Server</strong> component.</p>
       </div>
     </div>
-
     <div style="width: 70%" class="iframe-container">
-      <div>
-          <iframe src="./burnup/index.html?completed=true&blocks=1844512&priority=P1&priority=P2&priority=P3"></iframe>
-      </div>
+      <div><iframe src="burnup/index.html?product=Core&amp;component=Machine%20Learning%3A%20Server" title="Core Machine Learning: Server bug chart"></iframe></div>
     </div>
   </div>
 
   <div class="milestones">
     <div class="desc-box-outer">
       <div class="desc-box">
-        <h2>Desktop MVP H1 2023</h2>
-        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1820214">Bug 1820214</a>
-        <p>
-          This chart tracks the MVP for Full-Page Translations on Firefox Desktop.
-        </p>
+        <h2><a href="translations/index.html">Translations</a></h2>
+        <p>This chart tracks all bugs in the <strong>Firefox :: Translations</strong> and <strong>Firefox for Android :: Translations</strong> components.</p>
       </div>
     </div>
-
     <div style="width: 70%" class="iframe-container">
-      <div>
-          <iframe src="./burnup/index.html?completed=true&blocks=1820214&priority=P1&priority=P2&priority=P3"></iframe>
-      </div>
+      <div><iframe src="burnup/index.html?product=Firefox&amp;product=Firefox%20for%20Android&amp;component=Translations" title="Firefox Translations bug chart for all platforms"></iframe></div>
     </div>
   </div>
-
-  <h1><b>About Are We * Yet</b></h1>
-
-  <div class="summary-box">
-    <hr />
-    <p>
-      <strong>Are We * Yet</strong> is a template site for sharing updates to Mozilla projects.
-      <ul>
-        <li>
-          The source for this project can be found at
-          <a href="https://github.com/gregtatum/are-we-translations-yet/">github.com/gregtatum/are-we-translations-yet/</a>.
-        </li>
-        <li>
-          This site was forked from
-          <a href="https://github.com/bgrins/areweyet">github.com/bgrins/areweyet</a>
-        </li>
-        <li>
-          A list of all "are we yet" project sites is kept at
-          <a href="https://wiki.mozilla.org/Areweyet">wiki.mozilla.org/Areweyet</a>
-        </li>
-      </ul>
-    </p>
-  </div>
-
-  <script>
-    // Ensure that hyperlinks open in a new tab by default.
-    // The open-in-place functionality is awkward and broken.
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('a').forEach(link => {
-        const href = link.getAttribute('href') || '';
-        const isHashLink = href.startsWith('#');
-
-        // Leave same-page anchor links alone so they update the hash and scroll in place.
-        if (isHashLink) {
-          return;
-        }
-
-        if (!link.target) {
-          link.target = '_blank';
-        }
-        const rel = (link.rel || '').split(/\s+/).filter(Boolean);
-        if (!rel.includes('noopener')) {
-          rel.push('noopener');
-        }
-        if (!rel.includes('noreferrer')) {
-          rel.push('noreferrer');
-        }
-        link.rel = rel.join(' ');
-      });
-    });
-  </script>
 </body>
 </html>
