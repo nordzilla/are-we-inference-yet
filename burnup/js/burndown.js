@@ -125,6 +125,18 @@
                 groups: [["openBugCounts", "closedBugCounts"]],
                 order: null,
             },
+            tooltip: {
+                format: {
+                    // Report the orange edge's stacked value, rather than
+                    // repeating the unresolved count shown by the backlog.
+                    name: (name, ratio, id) => id === "openBugCounts"
+                        ? "Total bugs filed (orange edge)"
+                        : name,
+                    value: (value, ratio, id, index) => id === "openBugCounts"
+                        ? value + closedBugCounts[index]
+                        : value,
+                },
+            },
             axis: {
                 y: {
                     label: {
