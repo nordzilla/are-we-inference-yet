@@ -98,7 +98,8 @@
 
     function drawChart(bugDates, openBugCounts, closedBugCounts) {
         const tickValues = buildTickValues(bugDates);
-        c3.generate({
+        const showBacklog = searchParams && searchParams.backlog === "true";
+        const config = {
             data: {
                 xs: {
                     "openBugCounts": "bugDates",
@@ -125,6 +126,12 @@
                 order: null,
             },
             axis: {
+                y: {
+                    label: {
+                        text: "Bug count",
+                        position: "outer-middle",
+                    },
+                },
                 x: {
                     type: "timeseries",
                     // Add a little breathing room so the last label doesn't clip.
@@ -142,7 +149,32 @@
             padding: {
                 right: 16,
             },
-        });
+        };
+
+        if (showBacklog) {
+            // The orange area is stacked above closed bugs, so its upper edge
+            // is total filed. The unstacked open count is their difference.
+            config.data.xs.backlog = "bugDates";
+            config.data.columns.push(["backlog", ...openBugCounts]);
+            config.data.names.backlog = "Unresolved backlog";
+            config.data.types.backlog = "line";
+            config.data.colors.backlog = FIREFOX_DARK_BLUE_GREY1;
+            config.data.axes = { backlog: "y2" };
+            config.axis.y2 = {
+                show: true,
+                min: 0,
+                padding: { bottom: 0 },
+                label: {
+                    text: "Unresolved backlog",
+                    position: "outer-middle",
+                },
+                tick: { format: d3.format("d") },
+            };
+            // Leave room for right-axis values and its label.
+            config.padding.right = 90;
+        }
+
+        c3.generate(config);
     }
 
     function createElement(tag, child) {
