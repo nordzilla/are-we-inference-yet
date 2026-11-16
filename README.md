@@ -14,5 +14,6 @@ the backlog is growing; a falling line means it is shrinking. The existing
 orange area is stacked above closed bugs, so its top edge represents total
 filed and the gap between the two edges represents this backlog.
 
-The option defaults to off and is enabled for all charts on the main page,
-including the combined Core Machine Learning chart and Translations.
+The option defaults to off and is enabled for every whole-component chart
+on the main page and subpages, including combined components and the
+Translations platform charts. Charts tracking particular meta bugs leave it off.
