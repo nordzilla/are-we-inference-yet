@@ -97,7 +97,6 @@
     }
 
     function drawChart(bugDates, openBugCounts, closedBugCounts) {
-        const tickValues = buildTickValues(bugDates);
         const showBacklog = searchParams && searchParams.backlog === "true";
         const config = {
             data: {
@@ -153,9 +152,13 @@
                     },
                     tick: {
                         format: "%Y-%m-%d",
-                        values: tickValues,
+                        // Rebuild ticks for the visible dates after each zoom.
+                        values: (domain) => buildTickValues(domain).map(date => new Date(date)),
                     },
                 }
+            },
+            zoom: {
+                rescale: true,
             },
             // Extra space on the right so the final tick label renders fully.
             padding: {
@@ -186,7 +189,68 @@
             config.padding.right = 90;
         }
 
-        c3.generate(config);
+        const chart = c3.generate(config);
+        enableDateZoom(chart);
+    }
+
+    function enableDateZoom(chart) {
+        const controls = document.getElementById("zoom-controls");
+        const reset = document.getElementById("reset-zoom");
+        // C3 0.6.12 exposes its plot scales and event surface here. Use its
+        // zoom API to keep the data, tooltips, and both Y axes in sync.
+        const plot = chart.internal;
+        const fullDomain = chart.zoom().slice();
+        let startX;
+        let selection;
+
+        const clampX = x => Math.max(0, Math.min(plot.width, x));
+        const clearSelection = () => {
+            if (selection) {
+                selection.remove();
+                selection = null;
+            }
+        };
+
+        plot.main.selectAll(".c3-event-rect")
+            .style("cursor", "ew-resize")
+            .call(d3.drag()
+                .container(() => plot.main.node())
+                .on("start", () => {
+                    startX = clampX(d3.event.x);
+                    selection = plot.main.append("rect")
+                        .attr("class", "date-zoom-selection")
+                        .attr("x", startX)
+                        .attr("y", 0)
+                        .attr("width", 0)
+                        .attr("height", plot.height);
+                    chart.tooltip.hide();
+                })
+                .on("drag", () => {
+                    const endX = clampX(d3.event.x);
+                    selection.attr("x", Math.min(startX, endX))
+                        .attr("width", Math.abs(endX - startX));
+                })
+                .on("end", () => {
+                    const endX = clampX(d3.event.x);
+                    clearSelection();
+                    // A click should keep the current view and normal hover.
+                    if (Math.abs(endX - startX) < 4) {
+                        return;
+                    }
+                    chart.zoom([
+                        plot.x.invert(Math.min(startX, endX)),
+                        plot.x.invert(Math.max(startX, endX)),
+                    ]);
+                    reset.disabled = false;
+                }));
+
+        reset.addEventListener("click", () => {
+            clearSelection();
+            // Restore the original date extent, including its edge padding.
+            chart.zoom(fullDomain);
+            reset.disabled = true;
+        });
+        controls.hidden = false;
     }
 
     function createElement(tag, child) {

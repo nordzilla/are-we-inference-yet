@@ -21,3 +21,7 @@ open count.
 The option defaults to off and is enabled for every whole-component chart
 on the main page and subpages, including combined components and the
 Translations platform charts. Charts tracking particular meta bugs leave it off.
+
+Drag horizontally across any graph to zoom into a date range. Both vertical
+axes scale automatically for the selected dates. Drag again to narrow the
+range further, or select **Reset zoom** to restore the full date range.

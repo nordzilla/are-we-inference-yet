@@ -26,6 +26,21 @@
     .open-bugzilla {
         line-height: 5em;
     }
+    #zoom-controls {
+        text-align: center;
+        font-size: 0.8em;
+        margin: 0.5em auto 1em;
+    }
+    #reset-zoom {
+        margin-left: 0.75em;
+        font: inherit;
+    }
+    .date-zoom-selection {
+        fill: #0095DD;
+        fill-opacity: 0.15;
+        stroke: #00539F;
+        pointer-events: none;
+    }
     body {
       font-family: "Fira Sans", sans-serif;
     }
@@ -42,6 +57,10 @@
 </head>
 <body>
   <div id="chart" class="container">🔥 Burning down&hellip;</div>
+  <div id="zoom-controls" hidden>
+    Drag across the graph to zoom into a date range.
+    <button id="reset-zoom" type="button" disabled>Reset zoom</button>
+  </div>
   <div id="bugs" class="container"></div>
 </body>
 </html>
